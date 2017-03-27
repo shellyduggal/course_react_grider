@@ -1,6 +1,7 @@
 import React, {Component} from 'react'; //don't need a path because it's a node module, not a file we wrote
 import ReactDOM from 'react-dom';
 import YTSearch from 'youtube-api-search';
+import _ from 'lodash';
 
 import SearchBar from './components/search_bar'; //needs a relative path because we wrote this file
 import VideoList from './components/video_list';
@@ -35,6 +36,8 @@ class App extends Component {
 	}
 
 	render() {
+		const videoSearch = _.debounce((term) => {this.videoSearch(term)}, 300); //can only trigger a new search every 300ms
+
 		return (
 			<div>
 				<SearchBar 
